@@ -1,9 +1,10 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const env = require('dotenv').config();
 
 const app = express();
-const port = 8057;
-const TARGET = 'https://gifs.foxes.cool';
+const PORT = process.env.PORT || 8057;
+const TARGET = process.env.TARGET || 'https://gifs.foxes.cool';
 
 app.use(
   '/',
@@ -19,6 +20,6 @@ app.use(
   })
 );
 
-app.listen(port, () => {
-  console.log(`Reverse proxy listening at http://localhost:${port} -> ${TARGET}`);
+app.listen(PORT, process.env.LISTEN, () => {
+  console.log(`Reverse proxy listening at http://${process.env.LISTEN}:${PORT} -> ${TARGET}`);
 });
