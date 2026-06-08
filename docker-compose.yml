@@ -1,6 +1,8 @@
 services:
   api:
     build: .
+    env_file:
+      - .env
     ports:
       - "8057:8057"
     restart: unless-stopped
